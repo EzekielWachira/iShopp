@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">IShopp</string>
+    <string name="onboard_1_description">Shop from a list of items</string>
+    <string name="onboard_2_description">All your favourites is here</string>
+    <string name="onboard_3_description">Easy payment with payment of your choice</string>
+    <string name="onboard_4_description">Let your item be delivered right at your door step</string>
+    <string name="get_started">Get Started</string>
+</resources>
