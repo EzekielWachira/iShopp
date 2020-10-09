@@ -5,4 +5,14 @@
     <string name="onboard_3_description">Easy payment with payment of your choice</string>
     <string name="onboard_4_description">Let your item be delivered right at your door step</string>
     <string name="get_started">Get Started</string>
+    <string name="email_input">Your Email</string>
+    <string name="password_input">Your Password</string>
+    <string name="name_input">Your Name</string>
+    <string name="repeat_password_input">Repeat Password</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="register">Register</string>
+    <string name="enter_email">Enter your email address</string>
+    <string name="send">Send</string>
+    <string name="skip">Skip</string>
 </resources>
