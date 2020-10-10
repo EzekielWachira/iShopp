@@ -41,10 +41,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                 * TODO: handle firebase authentication reset password
-                 * */
-
                 String email = emailEditText.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {

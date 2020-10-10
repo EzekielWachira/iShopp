@@ -49,15 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                 * TODO: handle firebase authentication
-                 *  check to see if user has an account and much more
-                 * TODO: redirect user to register if no account associated
-                 *  with that email is found
-                 * TODO: Redirect user MainActivity on Successful login
-                 *  TODO: save the state so that the user won't sign in again if
-                 *   they previously logged in
-                 * */
+
                 String email = emailEditText.getText().toString().trim();
                 final String password = passwordEditText.getText().toString().trim();
 

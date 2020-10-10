@@ -56,10 +56,6 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                 * TODO: handle firebase authentication
-                 * TODO: On user registering, redirect to login screen
-                 * */
 
                 String email = emailEditText.getText().toString().trim();
                 String name = nameEditText.getText().toString().trim();
