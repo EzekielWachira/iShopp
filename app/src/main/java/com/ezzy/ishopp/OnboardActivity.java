@@ -93,6 +93,9 @@ public class OnboardActivity extends AppCompatActivity {
                 if (tab.getPosition() == onBoardItemList.size() - 1){
                     loadLastScreen();
                 }
+                if (tab.getPosition() < onBoardItemList.size() - 1){
+                    nextButton.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override
@@ -120,6 +123,19 @@ public class OnboardActivity extends AppCompatActivity {
             }
         });
 
+        prevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                position = onBoardViewPager.getCurrentItem();
+                if (position > 1){
+                    showPrevButton();
+                }
+                if (position == onBoardItemList.size() - 1){
+                    loadLastScreen();
+                }
+            }
+        });
+
         getStartedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,6 +146,10 @@ public class OnboardActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void showPrevButton() {
+        prevButton.setVisibility(View.VISIBLE);
     }
 
     private OnBoardViewPagerAdapter createOnBoardAdapter(List<OnBoardItem> item){

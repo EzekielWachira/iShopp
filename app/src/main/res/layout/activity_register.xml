@@ -5,18 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".LoginActivity">
+    tools:context=".RegisterActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="@string/sign_in"
+        android:text="@string/register"
         android:textColor="@color/White"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,11 +35,25 @@
         app:layout_constraintVertical_bias="0.093">
 
         <EditText
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/edittext_background"
+            android:drawableStart="@drawable/ic__person"
+            android:hint="@string/name_input"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/White"
+            android:textColorHint="?attr/colorBackgroundFloating" />
+
+        <EditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="32dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/edittext_background"
             android:drawableStart="@drawable/ic_email"
@@ -61,36 +76,41 @@
             android:textColor="@color/White"
             android:textColorHint="?attr/colorBackgroundFloating" />
 
+        <EditText
+            android:id="@+id/repeatPasswordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/edittext_background"
+            android:drawableStart="@drawable/ic_lock"
+            android:hint="@string/repeat_password_input"
+            android:inputType="textPassword"
+            android:textColor="@color/White"
+            android:textColorHint="?attr/colorBackgroundFloating" />
+
         <Button
-            android:id="@+id/signInButton"
+            android:id="@+id/registerButton"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
             android:background="@drawable/sign_in_button_bg"
-            android:text="@string/sign_in"
+            android:text="@string/register"
             android:textAllCaps="false"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/forgotPasswordTextView"
+            android:id="@+id/signInTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="24dp"
-            android:text="@string/forgot_password"
+            android:text="@string/sign_in"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/registerTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="24dp"
-            android:text="@string/register"
-            android:textColor="@color/White"
-            android:textSize="18sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
