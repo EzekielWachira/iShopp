@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "69883584375",
+    "firebase_url": "https://ishopp-e9f4a.firebaseio.com",
+    "project_id": "ishopp-e9f4a",
+    "storage_bucket": "ishopp-e9f4a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:69883584375:android:a317d0ef060c18619b8b72",
+        "android_client_info": {
+          "package_name": "com.ezzy.ishopp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "69883584375-3ic3mih4fnnceqnuu83lrm79vptnnl95.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ezzy.ishopp",
+            "certificate_hash": "7d8179f2dcb8bb03b285f64a776124cc93e5b5ce"
+          }
+        },
+        {
+          "client_id": "69883584375-l6odbhdlpalot6ht698l27ugkst299v9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCh2KBDNgFQ2sW_ausRAHuLh4Tl1YvuqHE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "69883584375-l6odbhdlpalot6ht698l27ugkst299v9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
