@@ -1,20 +1,29 @@
 package com.ezzy.ishopp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
     // WIDGETS
-    private EditText nameEditText, emailEditText;
+    private EditText passwordEditText, emailEditText;
     private Button signInButton;
     private TextView forgotPasswordTextView, registerTextView;
+    public FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +33,9 @@ public class LoginActivity extends AppCompatActivity {
         //hide the toolbar
         getSupportActionBar().hide();
 
-        nameEditText = findViewById(R.id.nameEditText);
+        auth = FirebaseAuth.getInstance();
+
+        passwordEditText = findViewById(R.id.passwordEditText);
         emailEditText = findViewById(R.id.emailEditText);
         signInButton = findViewById(R.id.signInButton);
         forgotPasswordTextView = findViewById(R.id.forgotPasswordTextView);
@@ -39,14 +50,42 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 /*
-                * TODO: handle firebase authentication
-                *  check to see if user has an account and much more
-                * TODO: redirect user to register if no account associated
-                *  with that email is found
-                * TODO: Redirect user MainActivity on Successful login
-                *  TODO: save the state so that the user won't sign in again if
-                *   they previously logged in
-                * */
+                 * TODO: handle firebase authentication
+                 *  check to see if user has an account and much more
+                 * TODO: redirect user to register if no account associated
+                 *  with that email is found
+                 * TODO: Redirect user MainActivity on Successful login
+                 *  TODO: save the state so that the user won't sign in again if
+                 *   they previously logged in
+                 * */
+                String email = emailEditText.getText().toString().trim();
+                final String password = passwordEditText.getText().toString().trim();
+
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                auth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (!task.isSuccessful()) {
+                                    if (password.length() < 6) {
+                                        passwordEditText.setError("Password too short, enter minimum 6 characters!");
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, "Authentication failed, check your email and password or sign up", Toast.LENGTH_LONG).show();
+                                    }
+                                } else {
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    finish();
+                                }
+                            }
+                        });
             }
         });
 
