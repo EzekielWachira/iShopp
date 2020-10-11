@@ -1,12 +1,19 @@
 package com.ezzy.ishopp;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ezzy.ishopp.Utils.MainViewPagerAdapter;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,9 +31,30 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    //WIDGETS
+    private TabLayout homeTabLayout;
+    private ViewPager2 homeViewPager;
+
+    private MainViewPagerAdapter adapter;
+    private static Context mContext;
+
     public HomeFragment() {
         // Required empty public constructor
     }
+
+    public HomeFragment(Context mContext){
+        this.mContext = mContext;
+    }
+
+    private static final String[] tabTitles  = new String[]{
+            "Food",
+            "Clothes",
+            "Beauty",
+            "Shoes",
+            "Electronics",
+            "Phones",
+            "Computers"
+    };
 
     /**
      * Use this factory method to create a new instance of
@@ -49,6 +77,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        adapter = new MainViewPagerAdapter(this);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -58,7 +87,38 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        homeTabLayout = view.findViewById(R.id.mainTabLayout);
+        homeViewPager = view.findViewById(R.id.mainViewPager);
+
+        homeViewPager.setAdapter(new MainViewPagerAdapter(this));
+        new TabLayoutMediator(homeTabLayout, homeViewPager, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                tab.setText(tabTitles[position]);
+            }
+        }).attach();
+
+        homeTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                homeViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        return view;
     }
+
+
+
 }

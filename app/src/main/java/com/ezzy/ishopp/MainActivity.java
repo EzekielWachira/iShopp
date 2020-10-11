@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
-        openFragment(new HomeFragment());
+        openFragment(new HomeFragment(this));
     }
 
     BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()){
                         case R.id.actionHome:
-                            openFragment(new HomeFragment());
+                            openFragment(new HomeFragment(getApplicationContext()));
                             return true;
-                        case R.id.actionCart:
+                        case R.id.actionMyCart:
                             openFragment(new CartFragment());
                             return true;
                         case R.id.actionFavorites:
@@ -57,4 +57,6 @@ public class MainActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+
 }
