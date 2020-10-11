@@ -128,7 +128,7 @@ public class OnboardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 position = onBoardViewPager.getCurrentItem();
                 if (position > 1){
-                    showPrevButton();
+//                    showPrevButton();
                 }
                 if (position == onBoardItemList.size() - 1){
                     loadLastScreen();
