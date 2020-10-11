@@ -22,10 +22,10 @@
             app:titleTextColor="@android:color/white">
 
         </androidx.appcompat.widget.Toolbar>
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/fragmentContainer"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragmentContainer"/>
 
     </LinearLayout>
 
@@ -38,5 +38,7 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/header"
         app:menu="@menu/menu_drawer" />
+    
 
 </androidx.drawerlayout.widget.DrawerLayout>
+

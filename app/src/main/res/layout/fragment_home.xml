@@ -3,12 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="home fragmnet" />
+        android:orientation="vertical">
 
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mainTabLayout"
+            app:tabIndicatorColor="@color/White"
+            android:background="@color/colorPrimary"
+            app:tabIndicatorGravity="bottom"
+            app:tabTextColor="@color/White"
+            app:tabMode="scrollable"
+            >
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/mainViewPager"/>
+
+
+    </LinearLayout>
 </FrameLayout>
