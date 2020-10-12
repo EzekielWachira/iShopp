@@ -92,5 +92,9 @@
             android:text="@string/register"
             android:textColor="@color/White"
             android:textSize="18sp" />
+
+
     </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
