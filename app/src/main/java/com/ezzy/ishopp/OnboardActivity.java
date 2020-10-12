@@ -48,7 +48,7 @@ public class OnboardActivity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 
         if (restorePreferenceData()){
             Intent loginIntent = new Intent(OnboardActivity.this, LoginActivity.class);
@@ -128,7 +128,7 @@ public class OnboardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 position = onBoardViewPager.getCurrentItem();
                 if (position > 1){
-                    showPrevButton();
+//                    showPrevButton();
                 }
                 if (position == onBoardItemList.size() - 1){
                     loadLastScreen();

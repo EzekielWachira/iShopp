@@ -2,15 +2,16 @@ package com.ezzy.ishopp.Utils;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.ezzy.ishopp.BeautyFragment;
-import com.ezzy.ishopp.CartFragment;
 import com.ezzy.ishopp.ClothesFragment;
+//import com.ezzy.ishopp.ComputersFragment;
 import com.ezzy.ishopp.ComputerFragment;
+import com.ezzy.ishopp.ComputersFragment;
 import com.ezzy.ishopp.ElectronicsFragment;
 import com.ezzy.ishopp.FoodFragment;
-import com.ezzy.ishopp.HomeFragment;
 import com.ezzy.ishopp.PhonesFragment;
 import com.ezzy.ishopp.ShoesFragment;
 
@@ -21,6 +22,10 @@ public class MainViewPagerAdapter extends FragmentStateAdapter {
     public MainViewPagerAdapter(@NonNull Fragment fragment) {
         super(fragment);
     }
+
+//    public MainViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+//        super(fragmentActivity);
+//    }
 
     @NonNull
     @Override
@@ -42,7 +47,6 @@ public class MainViewPagerAdapter extends FragmentStateAdapter {
                 return new ComputerFragment();
             default:
                 return null;
-
         }
     }
 

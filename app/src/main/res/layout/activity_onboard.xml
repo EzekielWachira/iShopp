@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/White"
     tools:context=".OnboardActivity">
 
     <androidx.viewpager.widget.ViewPager
@@ -22,8 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:background="@color/White"
         android:layout_marginBottom="32dp"
+        android:background="@color/White"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.953"
@@ -32,12 +33,12 @@
 
     <ImageButton
         android:id="@+id/prevButton"
-        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginBottom="32dp"
         android:background="@color/White"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/chevron_left" />
@@ -52,7 +53,9 @@
         app:layout_constraintBottom_toTopOf="@+id/prevButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:tabBackground="@drawable/indicator_selector">
+        app:tabBackground="@drawable/indicator_selector"
+        app:tabIndicatorColor="@color/White"
+        app:tabIndicatorGravity="bottom">
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -60,16 +63,15 @@
         android:id="@+id/getStartedButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:background="@drawable/get_started_bg"
         android:text="@string/get_started"
         android:textAllCaps="false"
         android:textColor="@color/White"
         android:textSize="18sp"
-        android:layout_marginTop="16dp"
         android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/introViewPager"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/introViewPager" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
