@@ -9,6 +9,7 @@ import com.ezzy.ishopp.BeautyFragment;
 import com.ezzy.ishopp.ClothesFragment;
 //import com.ezzy.ishopp.ComputersFragment;
 import com.ezzy.ishopp.ComputerFragment;
+import com.ezzy.ishopp.ComputersFragment;
 import com.ezzy.ishopp.ElectronicsFragment;
 import com.ezzy.ishopp.FoodFragment;
 import com.ezzy.ishopp.PhonesFragment;

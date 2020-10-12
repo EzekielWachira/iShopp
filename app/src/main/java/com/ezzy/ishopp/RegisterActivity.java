@@ -3,6 +3,8 @@ package com.ezzy.ishopp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -82,19 +84,24 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Passwords do not match!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
+                final ProgressDialog progressDialog= new ProgressDialog(RegisterActivity.this);
+                progressDialog.setTitle("Requesting account");
+                progressDialog.setMessage("Please Wait");
+                progressDialog.show();
+                progressDialog.setCanceledOnTouchOutside(false);
                 auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
                                 Toast.makeText(getApplicationContext(), "Succesfully created", Toast.LENGTH_LONG).show();
-
+progressDialog.dismiss();
                                 if (!task.isSuccessful()) {
-
+                                    progressDialog.dismiss();
                                     Toast.makeText(getApplicationContext(), "Authentication Failed", Toast.LENGTH_LONG).show();
 
                                 } else {
+                                    progressDialog.dismiss();
                                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                     finish();
                                 }
