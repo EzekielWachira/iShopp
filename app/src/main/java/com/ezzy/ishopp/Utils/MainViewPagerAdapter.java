@@ -43,7 +43,7 @@ public class MainViewPagerAdapter extends FragmentStateAdapter {
             case 5:
                 return new PhonesFragment();
             case 6:
-                return new ComputerFragment();
+                return new ComputersFragment();
             default:
                 return null;
         }

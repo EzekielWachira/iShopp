@@ -43,7 +43,6 @@ public class ElectronicsFragment extends Fragment {
     public ElectronicsFragment() {
         // Required empty public constructor
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
