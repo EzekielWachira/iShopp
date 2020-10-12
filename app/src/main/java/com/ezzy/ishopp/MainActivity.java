@@ -1,10 +1,14 @@
 package com.ezzy.ishopp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -55,7 +59,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         inflater.inflate(R.menu.main_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-public void signOut(){
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+        if (id==R.id.actionLogout){
+
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+            alertDialog.setTitle(R.string.Sign_out);
+            alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            }).setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    signOut();
+                    ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+                    progressDialog.setTitle(R.string.Sign_out);
+                    progressDialog.show();
+                    Intent intentlogin = new Intent(MainActivity.this,LoginActivity.class);
+                    intentlogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intentlogin);
+                }
+            });
+alertDialog.show();
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void signOut(){
     FirebaseAuth.getInstance().signOut();
 }
     public void openFragment(Fragment fragment){
