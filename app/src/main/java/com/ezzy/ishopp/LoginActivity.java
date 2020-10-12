@@ -68,8 +68,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 //setting the progress dialog
                 final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
-                progressDialog.setTitle("Login In");
-                progressDialog.setMessage("Please Wait");
+                progressDialog.setTitle(getString(R.string.log_in));
+                progressDialog.setMessage(getString(R.string.please_wait));
                 progressDialog.show();
                 progressDialog.setCanceledOnTouchOutside(false);
                 auth.signInWithEmailAndPassword(email, password)

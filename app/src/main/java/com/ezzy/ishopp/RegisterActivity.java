@@ -86,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 final ProgressDialog progressDialog= new ProgressDialog(RegisterActivity.this);
                 progressDialog.setTitle("Requesting account");
-                progressDialog.setMessage("Please Wait");
+                progressDialog.setMessage(getString(R.string.please_wait));
                 progressDialog.show();
                 progressDialog.setCanceledOnTouchOutside(false);
                 auth.createUserWithEmailAndPassword(email, password)
