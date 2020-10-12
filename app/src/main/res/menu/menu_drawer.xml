@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_cart"
+            android:icon="@drawable/ic_baseline_shopping_cart_24"
+            android:title="Cart" />
+        <item
+            android:id="@+id/nav_myOrders"
+            android:icon="@drawable/ic_baseline_view_headline_24"
+            android:title="My Orders" />
+        <item
+            android:id="@+id/nav_trending"
+            android:icon="@drawable/ic_baseline_watch_later_24"
+            android:title="Trending" />
+        <item
+            android:id="@+id/nav_vendor"
+            android:icon="@drawable/ic_baseline_supervisor_account_24"
+            android:title="Vendor" />
+        <item
+            android:id="@+id/nav_offers"
+            android:icon="@drawable/ic_baseline_card_giftcard_24"
+            android:title="Offers" />
+        <item
+            android:id="@+id/nav_category"
+            android:icon="@drawable/ic_baseline_clear_all_24"
+            android:title="Categories" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic__person"
+            android:title="Profile" />
+
+
+    </group>
+
+    <group android:checkableBehavior="single">
+        <group>
+            <menu>
+                <item
+                    android:id="@+id/nav_Help"
+                    android:icon="@drawable/ic_baseline_contact_support_24"
+                    android:title="Help" />
+                <item
+
+                    android:id="@+id/nav_contuctUs"
+                    android:icon="@drawable/ic_baseline_people_alt_24"
+                    android:title="Contuct Us" />
+            </menu>
+        </group>
+    </group>
+</menu>

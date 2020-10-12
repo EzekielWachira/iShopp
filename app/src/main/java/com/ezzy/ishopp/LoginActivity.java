@@ -35,6 +35,11 @@ public class LoginActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
+        if (auth.getCurrentUser() != null) {
+            // User is logged in
+            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+        }
+
         passwordEditText = findViewById(R.id.passwordEditText);
         emailEditText = findViewById(R.id.emailEditText);
         signInButton = findViewById(R.id.signInButton);
@@ -49,35 +54,35 @@ public class LoginActivity extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-//                String email = emailEditText.getText().toString().trim();
-//                final String password = passwordEditText.getText().toString().trim();
 
-//                if (TextUtils.isEmpty(email)) {
-////                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
-////                    return;
-////                }
-////                if (TextUtils.isEmpty(password)) {
-////                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-////                    return;
-////                }
-////
-////                auth.signInWithEmailAndPassword(email, password)
-////                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-////                            @Override
-////                            public void onComplete(@NonNull Task<AuthResult> task) {
-////                                if (!task.isSuccessful()) {
-////                                    if (password.length() < 6) {
-////                                        passwordEditText.setError("Password too short, enter minimum 6 characters!");
-////                                    } else {
-////                                        Toast.makeText(LoginActivity.this, "Authentication failed, check your email and password or sign up", Toast.LENGTH_LONG).show();
-////                                    }
-////                                } else {
-////                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-////                                    finish();
-////                                }
-////                            }
-////                        });
+                String email = emailEditText.getText().toString().trim();
+                final String password = passwordEditText.getText().toString().trim();
+
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                auth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (!task.isSuccessful()) {
+                                    if (password.length() < 6) {
+                                        passwordEditText.setError("Password too short, enter minimum 6 characters!");
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, "Authentication failed, check your email and password or sign up", Toast.LENGTH_LONG).show();
+                                    }
+                                } else {
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    finish();
+                                }
+                            }
+                        });
             }
         });
 

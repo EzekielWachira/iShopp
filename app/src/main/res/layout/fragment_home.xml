@@ -12,22 +12,22 @@
         android:orientation="vertical">
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/mainTabLayout"
-            android:layout_width="409dp"
-            app:tabMode="scrollable"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:id="@+id/mainTabLayout"
             app:tabIndicatorColor="@color/White"
+            android:background="@color/colorPrimary"
             app:tabIndicatorGravity="bottom"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:tabTextColor="@color/White"/>
+            app:tabTextColor="@color/White"
+            app:tabMode="scrollable"
+            >
+        </com.google.android.material.tabs.TabLayout>
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/mainViewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
+            android:id="@+id/mainViewPager"/>
+
+
     </LinearLayout>
-
-
 </FrameLayout>

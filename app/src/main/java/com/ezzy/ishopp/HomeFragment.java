@@ -1,6 +1,5 @@
 package com.ezzy.ishopp;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -32,29 +31,16 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     //WIDGETS
-    private TabLayout homeTabLayout;
-    private ViewPager2 homeViewPager;
+    private TabLayout mTabLayout;
+    private ViewPager2 mViewPager;
 
-    private MainViewPagerAdapter adapter;
-    private static Context mContext;
+    private static final String[] tabTitles = new String[]{
+            "Food", "Clothes", "Beauty", "Shoes", "Electronics", "Phones", "Computers"
+    };
 
     public HomeFragment() {
         // Required empty public constructor
     }
-
-    public HomeFragment(Context mContext){
-        this.mContext = mContext;
-    }
-
-    private static final String[] tabTitles  = new String[]{
-            "Food",
-            "Clothes",
-            "Beauty",
-            "Shoes",
-            "Electronics",
-            "Phones",
-            "Computers"
-    };
 
     /**
      * Use this factory method to create a new instance of
@@ -77,7 +63,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        adapter = new MainViewPagerAdapter(this);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -88,21 +73,21 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        homeTabLayout = view.findViewById(R.id.mainTabLayout);
-        homeViewPager = view.findViewById(R.id.mainViewPager);
+        mTabLayout = view.findViewById(R.id.mainTabLayout);
+        mViewPager = view.findViewById(R.id.mainViewPager);
 
-        homeViewPager.setAdapter(new MainViewPagerAdapter(this));
-        new TabLayoutMediator(homeTabLayout, homeViewPager, new TabLayoutMediator.TabConfigurationStrategy() {
+        mViewPager.setAdapter(new MainViewPagerAdapter(this));
+        new TabLayoutMediator(mTabLayout, mViewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 tab.setText(tabTitles[position]);
             }
         }).attach();
 
-        homeTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                homeViewPager.setCurrentItem(tab.getPosition());
+                mViewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override
@@ -118,7 +103,4 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
-
-
-
 }
