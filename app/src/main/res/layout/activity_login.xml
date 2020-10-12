@@ -92,5 +92,14 @@
             android:text="@string/register"
             android:textColor="@color/White"
             android:textSize="18sp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:visibility="gone" />
     </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

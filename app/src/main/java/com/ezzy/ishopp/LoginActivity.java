@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button signInButton;
     private TextView forgotPasswordTextView, registerTextView;
     public FirebaseAuth auth;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         signInButton = findViewById(R.id.signInButton);
         forgotPasswordTextView = findViewById(R.id.forgotPasswordTextView);
         registerTextView = findViewById(R.id.registerTextView);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         init();
     }
@@ -67,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
+                progressBar.setVisibility(View.VISIBLE);
                 auth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -102,5 +106,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        progressBar.setVisibility(View.GONE);
     }
 }
