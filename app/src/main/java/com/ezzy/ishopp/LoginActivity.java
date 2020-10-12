@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //hide the toolbar
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 
         auth = FirebaseAuth.getInstance();
 
@@ -54,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String email = emailEditText.getText().toString().trim();
                 final String password = passwordEditText.getText().toString().trim();
 

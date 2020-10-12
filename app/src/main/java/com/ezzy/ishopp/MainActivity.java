@@ -12,10 +12,12 @@ import android.view.MenuItem;
 
 import com.ezzy.ishopp.Utils.AccountFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import com.ezzy.ishopp.Utils.AccountFragment;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
-
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(mToolbar);
         mNavigationView = findViewById(R.id.nav_view);
         mDrawerLayout = findViewById(R.id.drawer_layout);
-        openFragment(new HomeFragment(this));
+        openFragment(new HomeFragment());
         setDrawerLayout();
         handlingselection();
     }
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void openFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, fragment);
+        transaction.replace(R.id.fragmentContainer, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }

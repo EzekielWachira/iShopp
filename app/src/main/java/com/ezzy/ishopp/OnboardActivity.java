@@ -48,7 +48,7 @@ public class OnboardActivity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 
         if (restorePreferenceData()){
             Intent loginIntent = new Intent(OnboardActivity.this, LoginActivity.class);
