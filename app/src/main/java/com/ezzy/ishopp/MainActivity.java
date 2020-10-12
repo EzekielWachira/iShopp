@@ -1,13 +1,21 @@
 package com.ezzy.ishopp;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import com.ezzy.ishopp.Utils.AccountFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
+
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -22,17 +30,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
 
+    // WIDGETS
+    private BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         mNavigationView = findViewById(R.id.nav_view);
         mDrawerLayout = findViewById(R.id.drawer_layout);
+        openFragment(new HomeFragment(this));
         setDrawerLayout();
         handlingselection();
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public void openFragment(Fragment fragment){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     private void handlingselection() {
@@ -104,4 +129,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }
