@@ -77,6 +77,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     };
 
+    private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectedfragment = null;
+            switch (item.getItemId()) {
+
+                case R.id.actionMyCart:
+                    selectedfragment = new CartFragment();
+                    break;
+                case R.id.actionFavorites:
+                    selectedfragment = new FavoritesFragment();
+                    break;
+                case R.id.actionNotifications:
+                    selectedfragment = new NotificationFragment();
+                    break;
+                case R.id.actionAccount:
+                    selectedfragment = new AccountFragment();
+                    break;
+
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id
+                    .fragmentContainer, selectedfragment).commit();
+            return true;
+        }
+    };
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -139,7 +165,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             Intent a = new Intent(Intent.ACTION_MAIN);
             a.addCategory(Intent.CATEGORY_HOME);
+
             a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             startActivity(a);
         }
 
