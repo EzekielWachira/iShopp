@@ -18,6 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.ezzy.ishopp.Utils.AccountFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,11 +40,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         mNavigationView = findViewById(R.id.nav_view);
+        bottomNavigationView = findViewById(R.id.bottomnavigationview);
+
         mDrawerLayout = findViewById(R.id.drawer_layout);
         openFragment(new HomeFragment());
         setDrawerLayout();
         handlingselection();
+
+        //handling bottom navigation view on click listener
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(navelistener);
     }
+   private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+           Fragment selectedfragment = null;
+           switch (item.getItemId()){
+
+               case R.id.actionMyCart:
+                   selectedfragment=new CartFragment();
+                   break;
+               case R.id.actionFavorites:
+                   selectedfragment=new FavoritesFragment();
+                   break;
+               case R.id.actionNotifications:
+                   selectedfragment=new NotificationFragment();
+                   break;
+               case R.id.actionAccount:
+                   selectedfragment=new AccountFragment();
+                   break;
+
+           }
+           getSupportFragmentManager().beginTransaction().replace(R.id
+           .fragmentContainer,selectedfragment).commit();
+           return true;
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -150,6 +182,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_contuctUs) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new contuctUsFragment()).commit();
+        } else if (id == R.id.actionMyCart) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainer, new CartFragment()).commit();
         }
 
 

@@ -6,6 +6,7 @@
 
     <item android:id="@+id/actionMyCart"
         android:title="@string/cart"
+        android:iconTint="@color/White"
         android:icon="@drawable/ic_cart"/>
 
     <item android:id="@+id/actionFavorites"

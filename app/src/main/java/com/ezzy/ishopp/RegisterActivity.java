@@ -1,9 +1,5 @@
 package com.ezzy.ishopp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +7,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -85,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Passwords do not match!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                final ProgressDialog progressDialog= new ProgressDialog(RegisterActivity.this);
+                final ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this);
                 progressDialog.setTitle("Requesting account");
                 progressDialog.setMessage(getString(R.string.please_wait));
                 progressDialog.show();
@@ -95,8 +93,8 @@ public class RegisterActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
-                                Toast.makeText(getApplicationContext(), "Succesfully created", Toast.LENGTH_LONG).show();
-progressDialog.dismiss();
+                                Toast.makeText(getApplicationContext(), "Successfully created", Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
                                 if (!task.isSuccessful()) {
                                     progressDialog.dismiss();
                                     Toast.makeText(getApplicationContext(), "Authentication Failed", Toast.LENGTH_LONG).show();
