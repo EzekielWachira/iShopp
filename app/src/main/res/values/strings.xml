@@ -33,4 +33,10 @@
     <string name="beauty">Beauty</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="yes">YES</string>
+    <string name="Sign_out">Sign Out</string>
+    <string name="no">No</string>
+    <string name="please_wait">Please Wait</string>
+    <string name="log_in">Login In</string>
+    <string name="vender_registration">Vender Registration</string>
 </resources>

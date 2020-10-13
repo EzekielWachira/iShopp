@@ -1,29 +1,27 @@
 package com.ezzy.ishopp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.ezzy.ishopp.Utils.AccountFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import com.ezzy.ishopp.Utils.AccountFragment;
-import android.widget.Toast;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import android.widget.Toast;
-
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.ezzy.ishopp.Utils.AccountFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -39,14 +37,46 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         mNavigationView = findViewById(R.id.nav_view);
+        bottomNavigationView = findViewById(R.id.bottomnavigationview);
+
         mDrawerLayout = findViewById(R.id.drawer_layout);
         openFragment(new HomeFragment());
         setDrawerLayout();
         handlingselection();
+
+        //handling bottom navigation view on click listener
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(navelistener);
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectedfragment = null;
+            switch (item.getItemId()) {
+
+                case R.id.actionMyCart:
+                    selectedfragment = new CartFragment();
+                    break;
+                case R.id.actionFavorites:
+                    selectedfragment = new FavoritesFragment();
+                    break;
+                case R.id.actionNotifications:
+                    selectedfragment = new NotificationFragment();
+                    break;
+                case R.id.actionAccount:
+                    selectedfragment = new AccountFragment();
+                    break;
+
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id
+                    .fragmentContainer, selectedfragment).commit();
+            return true;
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -55,7 +85,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void openFragment(Fragment fragment){
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.actionLogout) {
+
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+            alertDialog.setTitle(R.string.Sign_out);
+            alertDialog.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            }).setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    signOut();
+                    ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+                    progressDialog.setTitle(R.string.Sign_out);
+                    progressDialog.show();
+                    Intent intentlogin = new Intent(MainActivity.this, LoginActivity.class);
+                    intentlogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intentlogin);
+                }
+            });
+            alertDialog.show();
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void signOut() {
+        FirebaseAuth.getInstance().signOut();
+    }
+
+    public void openFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragmentContainer, fragment);
         transaction.addToBackStack(null);
@@ -71,9 +136,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        }else {
+
+            Intent a = new Intent(Intent.ACTION_MAIN);
+            a.addCategory(Intent.CATEGORY_HOME);
+            a.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(a);
         }
+
     }
 
 
@@ -94,28 +164,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_cart) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new CartFragment()).commit();
-        }
-        else if (id == R.id.nav_myOrders) {
+        } else if (id == R.id.nav_myOrders) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new MyOrderaFragment()).commit();
-        }
-        else if (id == R.id.nav_trending) {
+        } else if (id == R.id.nav_trending) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new TrendingFragment()).commit();
-        }
-        else if (id == R.id.nav_vendor) {
+        } else if (id == R.id.nav_vendor) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new VendorFragment()).commit();
-        }
-        else if (id == R.id.nav_offers) {
+        } else if (id == R.id.nav_offers) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new OffersFragment()).commit();
-        }
-        else if (id == R.id.nav_category) {
+        } else if (id == R.id.nav_category) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new CategorisFragment()).commit();
-        }
-        else if (id == R.id.nav_profile) {
+        } else if (id == R.id.nav_profile) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new ProfileFragment()).commit();
         } else if (id == R.id.nav_Help) {
@@ -124,13 +188,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_contuctUs) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new contuctUsFragment()).commit();
+        } else if (id == R.id.actionMyCart) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainer, new CartFragment()).commit();
         }
-
 
 
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 }

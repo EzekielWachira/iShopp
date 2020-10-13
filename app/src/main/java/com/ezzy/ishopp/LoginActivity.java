@@ -1,8 +1,6 @@
 package com.ezzy.ishopp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -65,18 +66,26 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
+                //setting the progress dialog
+                final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
+                progressDialog.setTitle(getString(R.string.log_in));
+                progressDialog.setMessage(getString(R.string.please_wait));
+                progressDialog.show();
+                progressDialog.setCanceledOnTouchOutside(false);
                 auth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (!task.isSuccessful()) {
                                     if (password.length() < 6) {
+                                        progressDialog.dismiss();
                                         passwordEditText.setError("Password too short, enter minimum 6 characters!");
                                     } else {
+                                        progressDialog.dismiss();
                                         Toast.makeText(LoginActivity.this, "Authentication failed, check your email and password or sign up", Toast.LENGTH_LONG).show();
                                     }
                                 } else {
+                                    progressDialog.dismiss();
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                     finish();
                                 }
@@ -102,4 +111,5 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
 }
