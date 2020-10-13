@@ -4,9 +4,11 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -51,29 +53,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navelistener);
     }
-   private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-           Fragment selectedfragment = null;
-           switch (item.getItemId()){
+            Fragment selectedfragment = null;
+            switch (item.getItemId()) {
 
-               case R.id.actionMyCart:
-                   selectedfragment=new CartFragment();
-                   break;
-               case R.id.actionFavorites:
-                   selectedfragment=new FavoritesFragment();
-                   break;
-               case R.id.actionNotifications:
-                   selectedfragment=new NotificationFragment();
-                   break;
-               case R.id.actionAccount:
-                   selectedfragment=new AccountFragment();
-                   break;
+                case R.id.actionMyCart:
+                    selectedfragment = new CartFragment();
+                    break;
+                case R.id.actionFavorites:
+                    selectedfragment = new FavoritesFragment();
+                    break;
+                case R.id.actionNotifications:
+                    selectedfragment = new NotificationFragment();
+                    break;
+                case R.id.actionAccount:
+                    selectedfragment = new AccountFragment();
+                    break;
 
-           }
-           getSupportFragmentManager().beginTransaction().replace(R.id
-           .fragmentContainer,selectedfragment).commit();
-           return true;
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id
+                    .fragmentContainer, selectedfragment).commit();
+            return true;
         }
     };
 
@@ -135,9 +138,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        }else {
+
+            Intent a = new Intent(Intent.ACTION_MAIN);
+            a.addCategory(Intent.CATEGORY_HOME);
+            a.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(a);
         }
+
     }
 
 
@@ -191,6 +199,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 }
