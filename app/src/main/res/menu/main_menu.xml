@@ -12,6 +12,10 @@
         android:icon="@drawable/ic_cart"
         app:showAsAction="always"/>
 
+    <item android:id="@+id/venderRegistration"
+        android:title="@string/vender_registration"
+        app:showAsAction="never"/>
+
     <item android:title="@string/settings"
         android:id="@+id/actionSettings"
         android:icon="@drawable/ic_settings"
@@ -21,4 +25,6 @@
         android:id="@+id/actionLogout"
         android:icon="@drawable/ic_arrow_forward"
         app:showAsAction="never"/>
+
+
 </menu>
