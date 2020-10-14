@@ -105,8 +105,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     progressDialog.setTitle(R.string.Sign_out);
                     progressDialog.show();
                     Intent intentlogin = new Intent(MainActivity.this, LoginActivity.class);
-                    intentlogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intentlogin);
+                    finish();
                 }
             });
             alertDialog.show();
@@ -139,7 +139,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             Intent a = new Intent(Intent.ACTION_MAIN);
             a.addCategory(Intent.CATEGORY_HOME);
-            a.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             startActivity(a);
         }
 

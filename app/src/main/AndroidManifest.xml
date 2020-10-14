@@ -13,7 +13,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ForgotPasswordActivity"/>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity"
+            android:launchMode="singleTask"/>
         <activity android:name=".OnboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
