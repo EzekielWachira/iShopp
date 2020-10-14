@@ -39,4 +39,11 @@
     <string name="please_wait">Please Wait</string>
     <string name="log_in">Login In</string>
     <string name="vender_registration">Vender Registration</string>
+    <string name="vender_activity_textview">Please enter details of your business</string>
+    <string name="business_name_hint">Business Name</string>
+    <string name="business_location_hint">Business Location</string>
+    <string name="short_description_hint">Short description about your business</string>
+    <string name="paybill_hint">MPESA paybill number</string>
+    <string name="register_your_business_button">Register your business</string>
+    <string name="mpesa_account_name_hint">     MPESA account name</string>
 </resources>

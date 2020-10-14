@@ -115,6 +115,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             alertDialog.show();
 
         }
+        if(id == R.id.venderRegistration){
+            startActivity(new Intent(MainActivity.this,VendorRegistration.class));
+        }
         return super.onOptionsItemSelected(item);
     }
 
