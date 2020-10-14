@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VendorRegistration"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/vender_activity_textview"
+        android:textColor="@color/Black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+        <EditText
+            android:id="@+id/mBusinessName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/vendor_edittext_background"
+            android:drawableStart="@drawable/ic_office_building"
+            android:ems="10"
+            android:hint="@string/business_name_hint"
+            android:inputType="text"
+            android:textColor="@color/Black"
+            android:textColorHint="@color/colorGrey" />
+
+        <EditText
+            android:id="@+id/BusinessLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/vendor_edittext_background"
+            android:drawableStart="@drawable/ic_location_pin"
+            android:ems="10"
+            android:hint="@string/business_location_hint"
+            android:inputType="text"
+            android:textColor="@color/White"
+            android:textColorHint="@color/colorGrey" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/vendor_edittext_background"
+            android:drawableStart="@drawable/ic_business_type"
+
+            android:spinnerMode="dropdown" />
+
+        <EditText
+            android:id="@+id/ShortDescription"
+            android:layout_width="match_parent"
+            android:layout_height="185dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/vendor_edittext_background"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="@string/short_description_hint"
+            android:inputType="textMultiLine"
+            android:textColor="@color/Black"
+            android:textColorHint="@color/colorGrey" />
+
+        <EditText
+            android:id="@+id/MpesaAccName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/vendor_edittext_background"
+            android:drawableStart="@drawable/ic_mpesa"
+            android:ems="10"
+            android:hint="@string/mpesa_account_name_hint"
+            android:inputType="text"
+            android:textColor="@color/Black"
+            android:textColorHint="@color/colorGrey" />
+
+        <EditText
+            android:id="@+id/MpesaPaybill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/vendor_edittext_background"
+            android:drawableStart="@drawable/ic_mpesa"
+            android:ems="10"
+            android:hint="@string/paybill_hint"
+            android:inputType="text"
+            android:textColor="@color/White"
+            android:textColorHint="@color/colorGrey" />
+
+        <Button
+            android:id="@+id/registerVendor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/register_vender_button"
+            android:text="@string/register_your_business_button"
+            android:textAllCaps="false"
+            android:textColor="@color/White"
+            android:textSize="16sp"/>
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
