@@ -51,29 +51,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navelistener);
     }
-   private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-           Fragment selectedfragment = null;
-           switch (item.getItemId()){
+            Fragment selectedfragment = null;
+            switch (item.getItemId()) {
 
-               case R.id.actionMyCart:
-                   selectedfragment=new CartFragment();
-                   break;
-               case R.id.actionFavorites:
-                   selectedfragment=new FavoritesFragment();
-                   break;
-               case R.id.actionNotifications:
-                   selectedfragment=new NotificationFragment();
-                   break;
-               case R.id.actionAccount:
-                   selectedfragment=new AccountFragment();
-                   break;
+                case R.id.actionMyCart:
+                    selectedfragment = new CartFragment();
+                    break;
+                case R.id.actionFavorites:
+                    selectedfragment = new FavoritesFragment();
+                    break;
+                case R.id.actionNotifications:
+                    selectedfragment = new NotificationFragment();
+                    break;
+                case R.id.actionAccount:
+                    selectedfragment = new AccountFragment();
+                    break;
 
-           }
-           getSupportFragmentManager().beginTransaction().replace(R.id
-           .fragmentContainer,selectedfragment).commit();
-           return true;
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id
+                    .fragmentContainer, selectedfragment).commit();
+            return true;
         }
     };
 
@@ -111,6 +112,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
             alertDialog.show();
 
+        }
+        if(id == R.id.venderRegistration){
+            startActivity(new Intent(MainActivity.this,VendorRegistration.class));
         }
         return super.onOptionsItemSelected(item);
     }
