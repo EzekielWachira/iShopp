@@ -57,7 +57,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedfragment = null;
             switch (item.getItemId()) {
-
+                case R.id.actionHome:
+                    selectedfragment = new HomeFragment();
+                    break;
                 case R.id.actionMyCart:
                     selectedfragment = new CartFragment();
                     break;
