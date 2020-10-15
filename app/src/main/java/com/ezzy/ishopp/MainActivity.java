@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navelistener);
     }
-   private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+   /*private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
            Fragment selectedfragment = null;
@@ -75,14 +75,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
            .fragmentContainer,selectedfragment).commit();
            return true;
         }
-    };
+    };*/
 
     private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedfragment = null;
             switch (item.getItemId()) {
-
+                case R.id.actionHome:
+                    selectedfragment = new HomeFragment();
                 case R.id.actionMyCart:
                     selectedfragment = new CartFragment();
                     break;
@@ -95,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 case R.id.actionAccount:
                     selectedfragment = new AccountFragment();
                     break;
-
             }
             getSupportFragmentManager().beginTransaction().replace(R.id
                     .fragmentContainer, selectedfragment).commit();
