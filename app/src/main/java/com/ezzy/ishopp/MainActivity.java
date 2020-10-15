@@ -51,6 +51,68 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navelistener);
     }
+<<<<<<< HEAD
+||||||| 3c99427
+   /*private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+           Fragment selectedfragment = null;
+           switch (item.getItemId()){
+
+               case R.id.actionMyCart:
+                   selectedfragment=new CartFragment();
+                   break;
+               case R.id.actionFavorites:
+                   selectedfragment=new FavoritesFragment();
+                   break;
+               case R.id.actionNotifications:
+                   selectedfragment=new NotificationFragment();
+                   break;
+               case R.id.actionAccount:
+                   selectedfragment=new AccountFragment();
+                   break;
+
+           }
+           getSupportFragmentManager().beginTransaction().replace(R.id
+           .fragmentContainer,selectedfragment).commit();
+           return true;
+        }
+    };*/
+
+=======
+
+   /*private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+
+   
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectedfragment = null;
+            switch (item.getItemId()) {
+                case R.id.actionHome:
+                    selectedfragment = new HomeFragment();
+                    break;
+                case R.id.actionMyCart:
+                    selectedfragment = new CartFragment();
+                    break;
+                case R.id.actionFavorites:
+                    selectedfragment = new FavoritesFragment();
+                    break;
+                case R.id.actionNotifications:
+                    selectedfragment = new NotificationFragment();
+                    break;
+                case R.id.actionAccount:
+                    selectedfragment = new AccountFragment();
+                    break;
+
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id
+                    .fragmentContainer, selectedfragment).commit();
+            return true;
+        }
+    };*/
+
+>>>>>>> 636bdaa0fc2efc34fa24a70525fc5765ec1814d7
     private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -112,6 +174,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             alertDialog.show();
 
         }
+        if (id==R.id.actionvendorpage){
+            Intent intent= new Intent(getApplicationContext(),VendorPage.class);
+            startActivity(intent);
+        }
+        if(id == R.id.venderRegistration){
+            startActivity(new Intent(MainActivity.this,VendorRegistration.class));
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -136,10 +205,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
         }else {
-
             Intent a = new Intent(Intent.ACTION_MAIN);
             a.addCategory(Intent.CATEGORY_HOME);
-
             a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             startActivity(a);
