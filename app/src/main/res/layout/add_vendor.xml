@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_baseline_camera_alt_24" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_toStartOf="@id/imageView"
+        android:src="@drawable/ic_baseline_collections_24" />
+
+    <EditText
+        android:id="@+id/EdittextitemNmae"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/borders"
+        android:drawableStart="@drawable/ic_baseline_dynamic_feed_24"
+        android:hint="Item Name"
+        android:paddingTop="8dp"
+        android:paddingBottom="5dp" />
+
+    <EditText
+        android:id="@+id/edittextitemDes"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/EdittextitemNmae"
+        android:layout_margin="30dp"
+        android:background="@drawable/borders"
+        android:gravity="top"
+        android:hint="Item Description"
+        android:paddingStart="8dp" />
+
+    <EditText
+        android:id="@+id/edittextitemprice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edittextitemDes"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/borders"
+        android:drawableStart="@drawable/ic_baseline_attach_money_24"
+        android:hint="Item Price"
+        android:paddingTop="8dp"
+        android:paddingBottom="5dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edittextitemprice"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="30dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:textColor="@color/White"
+        android:text="Add Item"
+        android:textAllCaps="false" />
+
+</RelativeLayout>
