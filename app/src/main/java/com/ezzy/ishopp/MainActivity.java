@@ -115,6 +115,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             alertDialog.show();
 
         }
+        if (id==R.id.actionvendorpage){
+            Intent intent= new Intent(getApplicationContext(),VendorPage.class);
+            startActivity(intent);
+        }
         if(id == R.id.venderRegistration){
             startActivity(new Intent(MainActivity.this,VendorRegistration.class));
         }
@@ -142,12 +146,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
         }else {
-
             Intent a = new Intent(Intent.ACTION_MAIN);
             a.addCategory(Intent.CATEGORY_HOME);
-
             a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
             startActivity(a);
         }
 

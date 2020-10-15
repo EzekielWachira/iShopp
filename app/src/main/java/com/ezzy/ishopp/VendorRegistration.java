@@ -91,7 +91,7 @@ public class VendorRegistration extends AppCompatActivity {
     private void saveVendorDetails(){
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference = mFirebaseDatabase.getReference();
-        Vendor mVendor = new Vendor();
+        final Vendor mVendor = new Vendor();
         mVendor.setBusiness_name(mBusinessName.getText().toString());
         mVendor.setBusiness_description(mBusinessDescription.getText().toString());
         mVendor.setBusiness_category(mBusinessType.getSelectedItem().toString());
@@ -106,6 +106,9 @@ public class VendorRegistration extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
                             makeToast(getResources().getString(R.string.vendor_reg_successful));
+                            Intent vendorPageIntent = new Intent(VendorRegistration.this, VendorPage.class);
+                            vendorPageIntent.putExtra("vendor", mVendor);
+                            startActivity(vendorPageIntent);
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
