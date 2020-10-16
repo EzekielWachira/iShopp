@@ -17,6 +17,7 @@
         android:id="@+id/vendorpageTablayout"
         android:layout_height="wrap_content"
         app:tabTextColor="@color/White"
+        app:tabIndicatorColor="@color/White"
         android:layout_below="@id/vendorpageToolBar"
         android:background="@color/colorPrimary"/>
     <androidx.viewpager2.widget.ViewPager2
