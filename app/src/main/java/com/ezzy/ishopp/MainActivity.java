@@ -51,31 +51,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navelistener);
     }
-
-
-    private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+   private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment selectedfragment = null;
-            switch (item.getItemId()) {
-                case R.id.actionHome:
-                    selectedfragment = new HomeFragment();
-                case R.id.actionMyCart:
-                    selectedfragment = new CartFragment();
-                    break;
-                case R.id.actionFavorites:
-                    selectedfragment = new FavoritesFragment();
-                    break;
-                case R.id.actionNotifications:
-                    selectedfragment = new NotificationFragment();
-                    break;
-                case R.id.actionAccount:
-                    selectedfragment = new AccountFragment();
-                    break;
-            }
-            getSupportFragmentManager().beginTransaction().replace(R.id
-                    .fragmentContainer, selectedfragment).commit();
-            return true;
+           Fragment selectedfragment = null;
+           switch (item.getItemId()){
+
+               case R.id.actionMyCart:
+                   selectedfragment=new CartFragment();
+                   break;
+               case R.id.actionFavorites:
+                   selectedfragment=new FavoritesFragment();
+                   break;
+               case R.id.actionNotifications:
+                   selectedfragment=new NotificationFragment();
+                   break;
+               case R.id.actionAccount:
+                   selectedfragment=new AccountFragment();
+                   break;
+
+           }
+           getSupportFragmentManager().beginTransaction().replace(R.id
+           .fragmentContainer,selectedfragment).commit();
+           return true;
         }
     };
 
@@ -114,13 +112,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             alertDialog.show();
 
         }
-        if (id==R.id.actionvendorpage){
-            Intent intent= new Intent(getApplicationContext(),VendorPage.class);
-            startActivity(intent);
-        }
-        if(id == R.id.venderRegistration){
-            startActivity(new Intent(MainActivity.this,VendorRegistration.class));
-        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -145,8 +136,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
         }else {
+
             Intent a = new Intent(Intent.ACTION_MAIN);
             a.addCategory(Intent.CATEGORY_HOME);
+
             a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             startActivity(a);

@@ -26,23 +26,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/borders"
+        android:layout_margin="8dp"
+        android:background="@drawable/vendor_edittext_background"
         android:drawableStart="@drawable/ic_baseline_dynamic_feed_24"
-        android:hint="Item Name"
-        android:paddingTop="8dp"
-        android:paddingBottom="5dp" />
+        android:hint="Item Name" />
 
     <EditText
         android:id="@+id/edittextitemDes"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_below="@id/EdittextitemNmae"
-        android:layout_margin="30dp"
-        android:background="@drawable/borders"
+        android:layout_margin="8dp"
+        android:background="@drawable/vendor_edittext_background"
         android:gravity="top"
         android:hint="Item Description"
         android:paddingStart="8dp" />
@@ -52,11 +47,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edittextitemDes"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/borders"
+        android:layout_margin="8dp"
+        android:background="@drawable/vendor_edittext_background"
+
         android:drawableStart="@drawable/ic_baseline_attach_money_24"
         android:hint="Item Price"
         android:paddingTop="8dp"
@@ -68,10 +61,11 @@
         android:layout_below="@id/edittextitemprice"
         android:layout_centerInParent="true"
         android:layout_marginBottom="30dp"
-        android:background="@color/colorPrimary"
         android:gravity="center"
-        android:textColor="@color/White"
+        android:background="@drawable/register_vender_button"
         android:text="Add Item"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        android:textColor="@color/White"
+        android:textSize="16sp" />
 
 </RelativeLayout>
