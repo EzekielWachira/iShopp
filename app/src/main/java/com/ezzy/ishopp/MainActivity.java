@@ -51,14 +51,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navelistener);
     }
-   private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedfragment = null;
             switch (item.getItemId()) {
+
                 case R.id.actionHome:
                     selectedfragment = new HomeFragment();
                     break;
+
                 case R.id.actionMyCart:
                     selectedfragment = new CartFragment();
                     break;
@@ -114,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             alertDialog.show();
 
         }
+
         if (id==R.id.actionvendorpage){
             Intent intent= new Intent(getApplicationContext(),VendorPage.class);
             startActivity(intent);

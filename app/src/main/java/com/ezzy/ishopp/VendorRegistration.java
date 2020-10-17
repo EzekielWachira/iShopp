@@ -1,14 +1,17 @@
 package com.ezzy.ishopp;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -22,6 +25,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
+
 import java.util.ArrayList;
 
 public class VendorRegistration extends AppCompatActivity {
@@ -32,10 +37,12 @@ public class VendorRegistration extends AppCompatActivity {
     private EditText MpesaAccountName;
     private EditText MpesaPaybillNumber;
     private Toolbar mToolbar;
+
     private Button mRegisterVendor;
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +54,9 @@ public class VendorRegistration extends AppCompatActivity {
         mBusinessType = findViewById(R.id.spinner);
         MpesaAccountName = findViewById(R.id.MpesaAccName);
         MpesaPaybillNumber = findViewById(R.id.MpesaPaybill);
+
         mRegisterVendor = findViewById(R.id.registerVendor);
+
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -56,6 +65,11 @@ public class VendorRegistration extends AppCompatActivity {
         mBusinessType.setPrompt("Vendor Type");
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("Select Vendor Type");
+
+        mBusinessType.setPrompt("Business Type");
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("Select Business Type");
+
         arrayList.add("Food");
         arrayList.add("Clothes");
         arrayList.add("Beauty");
@@ -78,6 +92,7 @@ public class VendorRegistration extends AppCompatActivity {
             public void onNothingSelected(AdapterView <?> parent) {
             }
         });
+
 
         mRegisterVendor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,5 +136,6 @@ public class VendorRegistration extends AppCompatActivity {
 
     private void makeToast(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
     }
 }
