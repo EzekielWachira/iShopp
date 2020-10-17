@@ -16,6 +16,9 @@ public class Item implements Parcelable {
         this.image_url = image_url;
     }
 
+    public Item() {
+    }
+
     protected Item(Parcel in) {
         name = in.readString();
         price = in.readString();

@@ -47,5 +47,5 @@
     <string name="register_your_business_button">Register your business</string>
     <string name="mpesa_account_name_hint">     MPESA account name</string>
     <string name="vendor_reg_successful">You have successfully registered as a vendor</string>
-    <string name="vendor_reg_error">An error occured while registering as a vendor, try again later</string>
+    <string name="vendor_reg_error">An error occurred while registering as a vendor, try again later</string>
 </resources>

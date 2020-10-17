@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/openCamera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -13,19 +13,19 @@
         android:src="@drawable/ic_baseline_camera_alt_24" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/openGallery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:layout_toStartOf="@id/imageView"
+        android:layout_toStartOf="@id/openCamera"
         android:src="@drawable/ic_baseline_collections_24" />
 
     <EditText
-        android:id="@+id/EdittextitemNmae"
+        android:id="@+id/edittextitemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageView"
+        android:layout_below="@id/openCamera"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
@@ -36,15 +36,31 @@
         android:paddingTop="8dp"
         android:paddingBottom="5dp" />
 
+    <ImageView
+        android:id="@+id/itemImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edittextitemName"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="129dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="132dp"
+        android:background="@color/colorPrimary"
+        android:src="@drawable/abc_vector_test" />
+
     <EditText
         android:id="@+id/edittextitemDes"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_below="@id/EdittextitemNmae"
-        android:layout_margin="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/borders"
         android:gravity="top"
+        android:layout_marginTop="29dp"
         android:hint="Item Description"
+        android:layout_below="@+id/itemImage"
         android:paddingStart="8dp" />
 
     <EditText
@@ -63,6 +79,7 @@
         android:paddingBottom="5dp" />
 
     <Button
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/edittextitemprice"
