@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+        <activity android:name=".VendorPage" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".VendorRegistration" android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>
