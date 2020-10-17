@@ -21,6 +21,8 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 public class VendorPage extends AppCompatActivity {
 
+    private static final String[] tabTitles = new String[]{"Store", "Customers", "Orders"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,20 +50,7 @@ public class VendorPage extends AppCompatActivity {
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, vendorViewPagger, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                switch (position) {
-                    case 0: {
-                        tab.setText("Store");
-
-                    }
-                    case 1: {
-                        tab.setText("Customers");
-                    }
-                    case 2: {
-
-                        tab.setText("Orders");
-                    }
-
-                }
+                tab.setText(tabTitles[position]);
             }
         });
         tabLayoutMediator.attach();
