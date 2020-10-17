@@ -16,6 +16,10 @@
     <item android:id="@+id/venderRegistration"
         android:title="@string/vender_registration"
         app:showAsAction="never"/>
+    <item android:title="Vendor Page"
+        android:id="@+id/actionvendorpage"
+        android:icon="@drawable/ic_arrow_forward"
+        app:showAsAction="never"/>
 
     <item android:title="@string/settings"
         android:id="@+id/actionSettings"
