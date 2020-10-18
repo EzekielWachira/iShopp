@@ -19,12 +19,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
-
+    private final FirebaseAuth firebaseAuth = new FirebaseManager().auth;
     // WIDGETS
     private EditText passwordEditText, emailEditText;
     private Button signInButton;
     private TextView forgotPasswordTextView, registerTextView;
-    public FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +33,8 @@ public class LoginActivity extends AppCompatActivity {
         //hide the toolbar
 //        getSupportActionBar().hide();
 
-        auth = FirebaseAuth.getInstance();
 
-        if (auth.getCurrentUser() != null) {
+        if (firebaseAuth.getCurrentUser() != null) {
             // User is logged in
             startActivity(new Intent(LoginActivity.this,MainActivity.class));
         }
@@ -72,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                 progressDialog.setMessage(getString(R.string.please_wait));
                 progressDialog.show();
                 progressDialog.setCanceledOnTouchOutside(false);
-                auth.signInWithEmailAndPassword(email, password)
+                firebaseAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
