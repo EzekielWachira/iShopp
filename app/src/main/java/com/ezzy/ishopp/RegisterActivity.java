@@ -27,10 +27,9 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText nameEditText, emailEditText, passwordEditText, repeatPasswordEditText;
     private Button registerButton;
     private TextView signInTextView;
-    private FirebaseAuth auth;
+    private final FirebaseAuth firebaseAuth = new FirebaseManager().auth;
+    private final FirebaseDatabase database = new FirebaseManager().database;
 
-    private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference mDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         //hide the action bar
 //        getSupportActionBar().hide();
 
-        auth = FirebaseAuth.getInstance();
+
 
         nameEditText = findViewById(R.id.nameEditText);
         emailEditText = findViewById(R.id.emailEditText);
@@ -95,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
                 progressDialog.setMessage(getString(R.string.please_wait));
                 progressDialog.show();
                 progressDialog.setCanceledOnTouchOutside(false);
-                auth.createUserWithEmailAndPassword(email, password)
+               firebaseAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -120,8 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void saveUserData(){
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mFirebaseDatabase.getReference();
+        DatabaseReference mDatabaseReference = database.getReference();
         User mUser = new User();
         mUser.setName(nameEditText.getText().toString());
         mUser.setLocation("Nairobi");
