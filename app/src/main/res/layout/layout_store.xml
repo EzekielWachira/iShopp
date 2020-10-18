@@ -44,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="lorem ipsum dolor sit amet consecture"
                 android:lines="2"
+                android:id="@+id/itemDescription"
                 />
 
             <TextView
@@ -51,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:text="Ksh: 700.00"
                 android:textSize="17sp"
+                android:id="@+id/itemPrice"
                 android:textStyle="bold"
                 android:textColor="@color/Red"
                 android:layout_marginTop="30dp"
