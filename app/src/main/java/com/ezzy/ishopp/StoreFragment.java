@@ -73,9 +73,9 @@ public class StoreFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_store, container, false);
         storeRecyclerview = view.findViewById(R.id.storeRecyclerView);
-//        itemList = new ArrayList<>();
-//        mDatabase = FirebaseDatabase.getInstance();
-//        mDatabaseReference = mDatabase.getReference();
+        itemList = new ArrayList<>();
+        mDatabase = FirebaseDatabase.getInstance();
+        mDatabaseReference = mDatabase.getReference();
 //        mDatabaseReference.child("store")
 //                .addValueEventListener(new ValueEventListener() {
 //                    @Override
