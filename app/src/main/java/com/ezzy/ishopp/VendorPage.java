@@ -1,5 +1,6 @@
 package com.ezzy.ishopp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,11 +14,14 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.ezzy.ishopp.Utils.addItem;
 import com.ezzy.ishopp.Utils.vendorPaggerAdapter;
+import com.ezzy.ishopp.models.Vendor;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class VendorPage extends AppCompatActivity {
+
+    private static final String[] tabTitles = new String[]{"Store", "Customers", "Orders"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,13 @@ public class VendorPage extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        Intent intent = getIntent();
+        if (intent.hasExtra("vendor")){
+            Vendor mVendor = intent.getParcelableExtra("vendor");
+            actionBar.setTitle(mVendor.getBusiness_name());
+        }
+
         init();
     }
 
@@ -39,20 +50,7 @@ public class VendorPage extends AppCompatActivity {
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, vendorViewPagger, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                switch (position) {
-                    case 0: {
-                        tab.setText("Store");
-
-                    }
-                    case 1: {
-                        tab.setText("Customers");
-                    }
-                    case 2: {
-
-                        tab.setText("Orders");
-                    }
-
-                }
+                tab.setText(tabTitles[position]);
             }
         });
         tabLayoutMediator.attach();
