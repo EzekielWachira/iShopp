@@ -1,19 +1,22 @@
 package com.ezzy.ishopp;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.ezzy.ishopp.firebase.StoreAdapter;
 import com.ezzy.ishopp.models.Item;
-import com.ezzy.ishopp.models.User;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,58 +27,35 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link StoreFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class StoreFragment extends Fragment {
 
     private RecyclerView storeRecyclerview;
     StoreAdapter adapter;
-    DatabaseReference mDatabaseReference;
+    private View mView;
+    DatabaseReference mDatabaseReference, itemreference;
     FirebaseDatabase mDatabase;
     List<Item> itemList;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private String mAuth;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public StoreFragment() {
         // Required empty public constructor
     }
 
-    public static StoreFragment newInstance(String param1, String param2) {
-        StoreFragment fragment = new StoreFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_store, container, false);
         storeRecyclerview = view.findViewById(R.id.storeRecyclerView);
+        storeRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         itemList = new ArrayList<>();
         mDatabase = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance().getCurrentUser().getUid();
         mDatabaseReference = mDatabase.getReference();
+        itemreference = FirebaseDatabase.getInstance().getReference().child("store").child(mAuth).child("items");
 //        mDatabaseReference.child("store")
 //                .addValueEventListener(new ValueEventListener() {
 //                    @Override
@@ -94,7 +74,61 @@ public class StoreFragment extends Fragment {
         return view;
     }
 
-    private void makeToast(String message){
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseRecyclerOptions<Item> options = new FirebaseRecyclerOptions.Builder<Item>().setQuery(itemreference, Item.class).build();
+        FirebaseRecyclerAdapter<Item, itemVh> adapter = new FirebaseRecyclerAdapter<Item, itemVh>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull final itemVh holder, int position, @NonNull final Item model) {
+                String mMItemid = getRef(position).getKey();
+                assert mMItemid != null;
+                itemreference.child(mMItemid).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+
+                            String ItemName = snapshot.child("name").getValue().toString();
+                            holder.mItemtitle.setText(model.getName());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+            }
+
+            @NonNull
+            @Override
+            public itemVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_store, parent, false);
+                return new itemVh(view);
+            }
+        };
+        storeRecyclerview.setAdapter(adapter);
+        adapter.startListening();
+    }
+
+    public static class itemVh extends RecyclerView.ViewHolder {
+
+        private TextView mItemtitle, mItemdescription, mItemPrice;
+        private ImageView mItemImage;
+
+        public itemVh(@NonNull View itemView) {
+            super(itemView);
+            mItemtitle = itemView.findViewById(R.id.itemTitle);
+            mItemdescription = itemView.findViewById(R.id.itemDescription);
+            mItemPrice = itemView.findViewById(R.id.itemPrice);
+            mItemImage = itemView.findViewById(R.id.itemImageView);
+        }
+    }
+
+    private void makeToast(String message) {
         Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
+
+
 }
