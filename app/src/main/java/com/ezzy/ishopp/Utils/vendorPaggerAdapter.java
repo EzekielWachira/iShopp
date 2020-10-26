@@ -21,7 +21,7 @@ public class vendorPaggerAdapter extends FragmentStateAdapter {
             case 0: return  new StoreFragment();
             case  1: return  new CustomerFragment();
             case  2: return new OrdersFragment();
-            default: return null;
+            default: return new StoreFragment();
         }
 
     }
