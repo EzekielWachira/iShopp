@@ -46,6 +46,8 @@ public class addItem extends DialogFragment {
     private String mCurrentUserId;
     private DatabaseReference mRootref;
     private Uri mFileUri;
+    private String mImageurl;
+
 
     @NonNull
     @Override
@@ -61,7 +63,10 @@ public class addItem extends DialogFragment {
         mItemPrice = view.findViewById(R.id.edittextitemprice);
         mSaveButton = view.findViewById(R.id.saveButton);
         mItemImage = view.findViewById(R.id.itemImage);
-mCurrentUserId= FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        mCurrentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,19 +119,33 @@ mCurrentUserId= FirebaseAuth.getInstance().getCurrentUser().getUid();
         if (requestCode == SELECT_FILE_ID && resultCode == Activity.RESULT_OK) {
             Uri selectedImageUri = data.getData();
             mItemImage.setImageBitmap(BitmapFactory.decodeFile(String.valueOf(selectedImageUri)));
-          mFileUri = data.getData();
+
+            mFileUri = data.getData();
         }
+        //the path in the storage ref to save the image
         final StorageReference mItemStorageRef = FirebaseStorage.getInstance().getReference().child("Items");
+//generating the key to give each item a difgfrent name
+        final String pushid = mRootref.child(mCurrentUserId).child("items").push().getKey();
+        //pushing to the storage
+        //ther mfile url is the datra of image being pushed
+        mItemStorageRef.child(pushid).putFile(mFileUri).
+                addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                //upon pushing it sucessifullt get the  download url now
+                if (task.isSuccessful()) {
+                    mItemStorageRef.child(pushid).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            //save to this variable and use it to save in the database
+                            mImageurl = task.getResult().toString();
 
-        String pushid = mRootref.child(mCurrentUserId).child("items").push().getKey();
-mItemStorageRef.putFile(mFileUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-    @Override
-    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-        if (task.isSuccessful()){
+                        }
+                    });
+                }
+            }
+        });
 
-        }
-    }
-});
     }
 
     private void saveItem(String name, String price, String description, String image_url) {
@@ -136,7 +155,7 @@ mItemStorageRef.putFile(mFileUri).addOnCompleteListener(new OnCompleteListener<U
         mItem.setName(name);
         mItem.setPrice(price);
         mItem.setDescription(description);
-        mItem.setImage_url(image_url);
+        mItem.setImage_url(mImageurl);
 
         mRootref.child("store")
                 .child(mCurrentUserId)
