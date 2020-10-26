@@ -24,6 +24,7 @@ import com.ezzy.ishopp.R;
 import com.ezzy.ishopp.models.Item;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -47,6 +48,7 @@ public class addItem extends DialogFragment {
     private Uri mFileUri;
     private String mImageurl;
 
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -61,7 +63,10 @@ public class addItem extends DialogFragment {
         mItemPrice = view.findViewById(R.id.edittextitemprice);
         mSaveButton = view.findViewById(R.id.saveButton);
         mItemImage = view.findViewById(R.id.itemImage);
+
         mCurrentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,6 +119,7 @@ public class addItem extends DialogFragment {
         if (requestCode == SELECT_FILE_ID && resultCode == Activity.RESULT_OK) {
             Uri selectedImageUri = data.getData();
             mItemImage.setImageBitmap(BitmapFactory.decodeFile(String.valueOf(selectedImageUri)));
+
             mFileUri = data.getData();
         }
         //the path in the storage ref to save the image
@@ -139,6 +145,7 @@ public class addItem extends DialogFragment {
                 }
             }
         });
+
     }
 
     private void saveItem(String name, String price, String description, String image_url) {
@@ -153,7 +160,6 @@ public class addItem extends DialogFragment {
         mRootref.child("store")
                 .child(mCurrentUserId)
                 .child("items")
-
                 .child(mRootref.child(mCurrentUserId).child("items").push().getKey())
                 .setValue(mItem)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
