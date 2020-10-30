@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -22,6 +24,10 @@ import com.ezzy.ishopp.Utils.AccountFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -32,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // WIDGETS
     private BottomNavigationView bottomNavigationView;
+    private TextView mTvname;
+    private TextView mTvEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,32 +58,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //handling bottom navigation view on click listener
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navelistener);
+        initiaslize();
     }
-   private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-           Fragment selectedfragment = null;
-           switch (item.getItemId()){
 
-               case R.id.actionMyCart:
-                   selectedfragment=new CartFragment();
-                   break;
-               case R.id.actionFavorites:
-                   selectedfragment=new FavoritesFragment();
-                   break;
-               case R.id.actionNotifications:
-                   selectedfragment=new NotificationFragment();
-                   break;
-               case R.id.actionAccount:
-                   selectedfragment=new AccountFragment();
-                   break;
+    private void initiaslize() {
 
-           }
-           getSupportFragmentManager().beginTransaction().replace(R.id
-           .fragmentContainer,selectedfragment).commit();
-           return true;
-        }
-    };
+        NavigationView navigationView= findViewById(R.id.nav_view);
+        View heder =  navigationView.getHeaderView(0);
+        mTvname = heder.findViewById(R.id.header_navname);
+        mTvEmail = heder. findViewById(R.id.Header_nav_email);
+        FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    String name = snapshot.child("name").getValue().toString();
+                    String email = snapshot.child("email").getValue().toString();
+                    mTvEmail.setText(email);
+                    mTvname.setText(name);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navelistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -83,6 +92,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Fragment selectedfragment = null;
             switch (item.getItemId()) {
 
+                case R.id.actionHome:
+                    selectedfragment = new HomeFragment();
+                    break;
                 case R.id.actionMyCart:
                     selectedfragment = new CartFragment();
                     break;
@@ -95,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 case R.id.actionAccount:
                     selectedfragment = new AccountFragment();
                     break;
-
             }
             getSupportFragmentManager().beginTransaction().replace(R.id
                     .fragmentContainer, selectedfragment).commit();
@@ -131,12 +142,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     progressDialog.setTitle(R.string.Sign_out);
                     progressDialog.show();
                     Intent intentlogin = new Intent(MainActivity.this, LoginActivity.class);
-                    intentlogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intentlogin);
+                    finish();
                 }
             });
             alertDialog.show();
 
+        }
+
+        if (id==R.id.actionvendorpage){
+            Intent intent= new Intent(getApplicationContext(),VendorPage.class);
+            startActivity(intent);
+        }
+        if(id == R.id.venderRegistration){
+            startActivity(new Intent(MainActivity.this,VendorRegistration.class));
         }
         return super.onOptionsItemSelected(item);
     }
@@ -165,7 +184,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             Intent a = new Intent(Intent.ACTION_MAIN);
             a.addCategory(Intent.CATEGORY_HOME);
-            a.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             startActivity(a);
         }
 

@@ -13,10 +13,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ezzy.ishopp.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -24,7 +27,9 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText nameEditText, emailEditText, passwordEditText, repeatPasswordEditText;
     private Button registerButton;
     private TextView signInTextView;
-    private FirebaseAuth auth;
+    private final FirebaseAuth firebaseAuth = new FirebaseManager().auth;
+    private final FirebaseDatabase database = new FirebaseManager().database;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         //hide the action bar
 //        getSupportActionBar().hide();
 
-        auth = FirebaseAuth.getInstance();
+
 
         nameEditText = findViewById(R.id.nameEditText);
         emailEditText = findViewById(R.id.emailEditText);
@@ -51,6 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent loginIntent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(loginIntent);
+                finish();
             }
         });
 
@@ -88,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
                 progressDialog.setMessage(getString(R.string.please_wait));
                 progressDialog.show();
                 progressDialog.setCanceledOnTouchOutside(false);
-                auth.createUserWithEmailAndPassword(email, password)
+               firebaseAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -101,6 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 } else {
                                     progressDialog.dismiss();
+                                    saveUserData();
                                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                     finish();
                                 }
@@ -109,6 +116,19 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void saveUserData(){
+        DatabaseReference mDatabaseReference = database.getReference();
+        User mUser = new User();
+        mUser.setName(nameEditText.getText().toString());
+        mUser.setLocation("Nairobi");
+        mUser.setEmail(emailEditText.getText().toString());
+        mUser.setPhone("123456789");
+        mUser.setImage_url("");
+        mDatabaseReference.child("users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .setValue(mUser);
     }
 
 }

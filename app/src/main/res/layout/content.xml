@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/White"
         >
 
     </androidx.appcompat.widget.Toolbar>
@@ -24,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
 app:itemIconTint="@color/White"
+            app:itemTextColor="@color/White"
             app:itemBackground="@color/colorPrimary"
             app:menu="@menu/bottom_navigation_menu" />
 

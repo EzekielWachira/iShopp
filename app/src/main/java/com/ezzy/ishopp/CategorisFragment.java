@@ -13,7 +13,8 @@ import android.view.ViewGroup;
  * Use the {@link CategorisFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CategorisFragment extends Fragment {
+public class
+CategorisFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

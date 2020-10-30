@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".VendorPage">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/vendorpageToolBar"
+        android:layout_width="match_parent"
+        app:titleTextColor="@color/White"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary" />
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:id="@+id/vendorpageTablayout"
+        android:layout_height="wrap_content"
+        app:tabTextColor="@color/White"
+        app:tabIndicatorColor="@color/White"
+        android:layout_below="@id/vendorpageToolBar"
+        android:background="@color/colorPrimary"/>
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/vendorviewpagger2"
+        android:layout_below="@id/vendorpageTablayout"/>
+</RelativeLayout>

@@ -19,7 +19,7 @@
 
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/header_navname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -32,15 +32,15 @@
         app:layout_constraintVertical_bias="0.515" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/Header_nav_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:text="@string/enter_email"
         android:textColor="@color/White"
-        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="@+id/header_navname"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/circleImageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/header_navname" />
 </androidx.constraintlayout.widget.ConstraintLayout>
