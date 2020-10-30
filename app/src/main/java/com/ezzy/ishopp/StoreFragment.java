@@ -44,7 +44,7 @@ public class StoreFragment extends Fragment {
         itemViewFragment = inflater.inflate(R.layout.fragment_store, container, false);
         mRecyclerViewItem = itemViewFragment.findViewById(R.id.storeRecyclerView);
         mRecyclerViewItem.setLayoutManager(new LinearLayoutManager(getContext()));
-        currenttuserid = FirebaseAuth.getInstance().getUid().toString();
+        currenttuserid = FirebaseAuth.getInstance().getUid();
         mItemreference = FirebaseDatabase.getInstance().getReference().child("store").child(currenttuserid).child("items");
 
 
@@ -69,14 +69,14 @@ public class StoreFragment extends Fragment {
                 mItemreference.child(itemid).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.hasChildren()) {
+                        if (snapshot.hasChild("image_url")) {
                             String itemname = snapshot.child("name").getValue().toString();
                             String itemdescriptuion = snapshot.child("description").getValue().toString();
                             String itemPrice = snapshot.child("price").getValue().toString();
                             final String itemimage = snapshot.child("image_url").getValue().toString();
                             holder.mItemtitle.setText(itemname);
                             holder.mItemdescription.setText(itemdescriptuion);
-                            holder.mItemPrice.setText(itemPrice);
+                            holder.mItemPrice.setText("Ksh: " + itemPrice);
                             Picasso.get().load(itemimage).fit().centerInside().networkPolicy(NetworkPolicy.OFFLINE)
                                     .placeholder(R.drawable.ic__person).into(holder.mItemImage, new Callback() {
                                 @Override
