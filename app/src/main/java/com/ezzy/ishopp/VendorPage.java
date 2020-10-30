@@ -15,7 +15,6 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.ezzy.ishopp.Utils.addItem;
 import com.ezzy.ishopp.Utils.vendorPaggerAdapter;
 import com.ezzy.ishopp.models.Vendor;
-import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -34,7 +33,7 @@ public class VendorPage extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        if (intent.hasExtra("vendor")){
+        if (intent.hasExtra("vendor")) {
             Vendor mVendor = intent.getParcelableExtra("vendor");
             actionBar.setTitle(mVendor.getBusiness_name());
         }
@@ -55,6 +54,7 @@ public class VendorPage extends AppCompatActivity {
         });
         tabLayoutMediator.attach();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -65,14 +65,14 @@ public class VendorPage extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if ( id==R.id.action_vendor_add){
+        if (id == R.id.action_vendor_add) {
             openAdd();
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void openAdd() {
-addItem addItem = new addItem();
-addItem.show(getSupportFragmentManager(),"Item");
+        addItem addItem = new addItem();
+        addItem.show(getSupportFragmentManager(), "Item");
     }
 }
