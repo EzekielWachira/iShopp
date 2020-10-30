@@ -24,7 +24,6 @@ import com.ezzy.ishopp.R;
 import com.ezzy.ishopp.models.Item;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -70,6 +69,18 @@ public class addItem extends DialogFragment {
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mItemName.getText().toString().isEmpty()) {
+                    mItemName.requestFocus();
+                    return;
+                }
+                if (mItemPrice.getText().toString().isEmpty()) {
+                    mItemPrice.requestFocus();
+                    return;
+                }
+                if (mItemDescription.getText().toString().isEmpty()) {
+                    mItemDescription.requestFocus();
+                    return;
+                }
                 saveItem(
                         mItemName.getText().toString(),
                         mItemPrice.getText().toString(),

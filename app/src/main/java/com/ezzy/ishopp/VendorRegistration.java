@@ -66,17 +66,17 @@ public class VendorRegistration extends AppCompatActivity {
 //        arrayList.add("Select Vendor Type");
 
         mBusinessType.setPrompt("Business Type");
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("Select Business Type");
+        ArrayList<String> arrayListl= new ArrayList<>();
+        arrayListl.add("Select Business Type");
 
-        arrayList.add("Food");
-        arrayList.add("Clothes");
-        arrayList.add("Beauty");
+        arrayListl.add("Food");
+        arrayListl.add("Clothes");
+        arrayListl.add("Beauty");
 
-        arrayList.add("Food");
-        arrayList.add("Shoes");
-        arrayList.add("Electronics");
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, arrayList);
+        arrayListl.add("Food");
+        arrayListl.add("Shoes");
+        arrayListl.add("Electronics");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, arrayListl);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mBusinessType.setAdapter(arrayAdapter);
         mBusinessType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
