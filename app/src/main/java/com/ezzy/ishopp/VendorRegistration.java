@@ -61,9 +61,9 @@ public class VendorRegistration extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        mBusinessType.setPrompt("Vendor Type");
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("Select Vendor Type");
+//        mBusinessType.setPrompt("Vendor Type");
+//        ArrayList<String> arrayList = new ArrayList<>();
+//        arrayList.add("Select Vendor Type");
 
         mBusinessType.setPrompt("Business Type");
         ArrayList<String> arrayListl= new ArrayList<>();
