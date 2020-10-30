@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/itemImageView"
@@ -14,7 +14,7 @@
     <LinearLayout
         android:id="@+id/lay1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_toStartOf="@id/lay2"
         android:layout_toEndOf="@id/itemImageView"
         android:layout_weight="80"
